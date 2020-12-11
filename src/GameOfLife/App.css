@@ -1,0 +1,44 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+body>#root {
+    height: 100vh;
+    
+}
+
+.wholeBody {
+    width: 100%;
+    height: 90vh;
+    padding: 30px;
+    background-color: black;
+}
+.buttonArea {
+     width: 80%;
+     margin: auto;
+}
+.buttonArea button {
+    margin: 0 5px;
+}
+.GameArea {
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    background-color: white;
+    display: flex;
+    padding: auto;
+}
+
+.CeilsArea{
+display: flex;
+
+}
+.ceilsRows{
+display: grid;
+
+}
+
+.ceil {   
+    display: grid;
+}
