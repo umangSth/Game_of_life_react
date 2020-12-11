@@ -4,11 +4,13 @@ import React, {
      useEffect
 } from 'react'
 import './App.css'
+import RenderCeils from './component/RenderCeils'
+import RandomButton from './component/RandomButton'
+import StartButton from './component/StartButton'
 
 //this is rows and columns
 const columns= 81 , rows = 40
 //const columns = 10,    rows = 10
-
 
 export default function App() {
     const [ceils, setCeils] = useState(generateCeils);
@@ -37,7 +39,7 @@ export default function App() {
                     arr.map((ceil, y) => gameLogic(ceil, countNeighours(x, y)))
                 )                
                 setCeils(tempArr)
-            }, 100)
+            }, 50)
             return () => clearInterval(interval);
     }, [running, ceils])
 
@@ -77,14 +79,12 @@ export default function App() {
 
            return count
        }
-  
-
-
     //Genrate random ceils
     const handleRandom = () => {setCeils(generateCeils(0.80))}
 
 
-    
+
+
     return(
         <div className='wholeBody'>
             {/* GameArea */}
@@ -113,60 +113,5 @@ function generateCeils(input) {
     }
     return resultArr
 }
-
-function StartButton(props) {
-    return(
-        <button onClick={()=>{
-                        
-                        props.handleStatus();}}>
-                {props.status?'stop':'start'}</button>
-    )
-}
-
-function RandomButton(props) {
-    return(
-        <button onClick={()=>props.handleRandom()}> Random</button>
-    )
-}
-
-function RenderCeils(props){
-    return (
-        <div className="CeilsArea">
-            {
-                props.ceils.map((ceilRow, index) => <RenderCeil key={`columns-${index}`} ceilRow={ceilRow} index={index} handleClick={props.handleClick} />)
-            }
-        </div>
-    )
-}
-
-function RenderCeil(props) {
-    const {ceilRow, index, handleClick} = props
-    return ( < div style = {
-                {
-                    display: 'flex',
-                    flexDirection: 'column',
-                }
-            }
-            key = {
-                `row-${index}`
-            } >
-                        {ceilRow.map((ceil,j)=> {
-                                return(
-                                    <div style = {{
-                                                display: 'flex',
-                                                flexDirection:'row',
-                                                // gridTemplateColumns: `repeat(${columns}, 1fr)`,
-                                                height: '15px',
-                                                width:'15px',                                                
-                                                cursor: "pointer",                                                                
-                                                backgroundColor: ceil?"black":'white',
-                                            }}
-                                        onClick={()=>handleClick(index,j)}
-                                        key = {`${index}-${j}`}></div>
-                                )
-                        })}
-            </div>)
-}
-
 
 
